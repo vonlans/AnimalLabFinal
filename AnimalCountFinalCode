@@ -1,0 +1,201 @@
+package animalCounter;
+
+public class Alligator extends Animal implements Countable {
+    public Alligator() {
+        count = 0;
+    }
+
+    @Override
+    public void incrementCount() {
+        count++;
+    }
+}
+---------------------------------------
+package animalCounter;
+
+public abstract class Animal {
+    protected int count;
+
+    public void resetCount() {
+        count = 0;
+    }
+
+    public int getCount() {
+        return count;
+    }
+}
+_______________----------------------------------------------------------------------------
+package animalCounter;
+
+public interface Countable {
+    void incrementCount();
+}
+===-------------------------------------------------------------
+package animalCounter;
+
+public class Sheep extends Animal implements Countable {
+    public Sheep() {
+        count = 0;
+    }
+
+    @Override
+    public void incrementCount() {
+        count += 2;
+    }
+}
+------------------------------------------------------------
+package animalCounter;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class AnimalCounterGUI extends JFrame {
+    private JLabel welcomeLabel;
+    private JLabel alligatorCountLabel;
+    private JLabel sheepCountLabel;
+    private JButton addAlligatorButton;
+    private JButton addSheepButton;
+    private JButton displayCountsButton;
+    private JButton resetCountsButton;
+    private JRadioButton alligatorRadioButton;
+    private JRadioButton sheepRadioButton;
+    private ButtonGroup radioButtonGroup;
+    private JButton exitButton;
+
+    private int alligatorCount;
+    private int sheepCount;
+    
+    public AnimalCounterGUI() {
+     
+        welcomeLabel = new JLabel("Welcome to the Animal Counter!");
+        alligatorCountLabel = new JLabel("Alligator Count: 0");
+        sheepCountLabel = new JLabel("Sheep Count: 0");
+
+        addAlligatorButton = new JButton("Add Alligator");
+        addSheepButton = new JButton("Add Sheep");
+        displayCountsButton = new JButton("Display Counts");
+        resetCountsButton = new JButton("Reset Counts");
+        alligatorRadioButton = new JRadioButton("Alligator");
+        sheepRadioButton = new JRadioButton("Sheep");
+        radioButtonGroup = new ButtonGroup();
+        exitButton = new JButton("Exit");
+
+        
+        radioButtonGroup.add(alligatorRadioButton);
+        radioButtonGroup.add(sheepRadioButton);
+        
+        setLayout(new GridLayout(6, 2));
+
+        
+        add(welcomeLabel);
+        add(new JLabel()); 
+        add(alligatorCountLabel);
+        add(sheepCountLabel);
+        add(addAlligatorButton);
+        add(addSheepButton);
+        add(displayCountsButton);
+        add(resetCountsButton);
+        add(alligatorRadioButton);
+        add(sheepRadioButton);
+        add(exitButton);
+        
+        
+        ButtonListener buttonListener = new ButtonListener();
+        addAlligatorButton.addActionListener(buttonListener);
+        addSheepButton.addActionListener(buttonListener);
+        displayCountsButton.addActionListener(buttonListener);
+        resetCountsButton.addActionListener(buttonListener);
+        exitButton.addActionListener(buttonListener);
+    }
+
+    class ButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            
+        }
+    }
+
+
+public void setWelcomeMessage(String string) {
+	// TODO Auto-generated method stub
+	
+}
+
+public void setAlligatorCount(int i) {
+	// TODO Auto-generated method stub
+	
+}
+
+public void setSheepCount(int i) {
+	// TODO Auto-generated method stub
+	
+}
+
+public void setButtonListener(ButtonListener buttonListener) {
+	// TODO Auto-generated method stub
+	
+}
+
+public void updateCountLabels() {
+	// TODO Auto-generated method stub
+	
+}
+}
+        
+	--------------------------------------------------------------------------------------------
+package animalCounter;
+
+import java.awt.event.ActionEvent;
+
+public class AnimalCounterGUIApp {
+    public static void main(String[] args) {
+       
+        AnimalCounterGUI gui = new AnimalCounterGUI();
+        
+        
+        gui.setVisible(true);
+        
+        
+        gui.setWelcomeMessage("Welcome to the Animal Counter!");
+     
+        gui.setAlligatorCount(0);
+        gui.setSheepCount(0);
+        gui.updateCountLabels();
+        
+        /*
+        // Step 4, part e. Handle all button events via a single inner class event handler - Is not working for me.
+        gui.setButtonListener(new AnimalCounterGUI.ButtonListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == gui.getAddAlligatorButton()) {
+                    // Handle Add Alligator button event
+                    int alligatorCount = gui.getAlligatorCount();
+                    alligatorCount++;
+                    gui.setAlligatorCount(alligatorCount);
+                } else if (e.getSource() == gui.getAddSheepButton()) {
+                    // Handle Add Sheep button event
+                    int sheepCount = gui.getSheepCount();
+                    sheepCount++;
+                    gui.setSheepCount(sheepCount);
+                } else if (e.getSource() == gui.getDisplayCountsButton()) {
+                    // Handle Display Counts button event
+                    // ...
+                } else if (e.getSource() == gui.getResetCountsButton()) {
+                    // Handle Reset Counts button event
+                    gui.setAlligatorCount(0);
+                    gui.setSheepCount(0);
+                } else if (e.getSource() == gui.getExitButton()) {
+                    // Handle Exit button event
+                    System.exit(0);
+                }
+                
+                // Update the count labels
+                gui.updateCountLabels();
+            }
+        }); */
+    }
+}
+
+	
